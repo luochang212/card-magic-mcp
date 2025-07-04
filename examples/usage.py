@@ -18,7 +18,7 @@ class CMAgent:
         return [
             {
                 "mcpServers": {
-                    "mysql": {
+                    "card_magic": {
                         "type": "stdio",
                         "command": "uvx",
                         "args": [
@@ -36,8 +36,8 @@ class CMAgent:
         tools = self.create_tools()
         return ReActChat(
             llm=self.llm_cfg,
-            name='Postgres 数据库助手',
-            description='使用 ReActChat 模式查询 Postgres 数据库',
+            name='卡牌魔术助手',
+            description='使用 ReActChat 模式',
             system_message='',
             function_list=tools,
         )
@@ -47,8 +47,8 @@ class CMAgent:
         tools = self.create_tools()
         return Assistant(
             llm=self.llm_cfg,
-            name='Postgres 数据库助手',
-            description='使用 Assistant 模式查询 Postgres 数据库',
+            name='卡牌魔术助手',
+            description='使用 Assistant 模式',
             system_message='',
             function_list=tools,
         )

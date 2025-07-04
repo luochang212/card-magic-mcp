@@ -15,7 +15,7 @@ def create_logger(name):
 
     # create console handler and set level to debug
     stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.ERROR)
+    stream_handler.setLevel(logging.DEBUG)
 
     # create formatter
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -286,14 +286,15 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
 
     # 解析卡面信息
     try:
-        cards = card_str.strip().split(' ')
-        cards = [e.strip() for e in cards]
+        cards = [card.strip() for card in card_str.strip().split() if card.strip()]
     except Exception as e:
         logger.warning(f"卡面信息解析失败: {str(e)}")
         return [TextContent(type="text", text=f"卡面信息解析失败: {str(e)}")]
 
     # 检查卡面信息
-    check_info = cg.check_card(cards, card_num=5)
+    card_cnt = 4 if name == "decode_cards" else 5
+    check_info = cg.check_card(cards, card_num=card_cnt)
+
     if check_info != "pass":
         logger.warning(check_info)
         return [TextContent(type="text", text=check_info)]
