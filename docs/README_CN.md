@@ -6,31 +6,29 @@
 [![CI](https://github.com/luochang212/card-magic-mcp/workflows/CI/badge.svg)](https://github.com/luochang212/card-magic-mcp/actions?query=workflow:CI)
 [![Downloads](https://static.pepy.tech/personalized-badge/card-magic-mcp?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/card-magic-mcp)
 
-[中文文档](docs/README_CN.md)
+一个实现了 Chico & Dico 纸牌魔术的模型上下文协议（MCP）服务器。该服务器使AI助手能够通过基于组合原理的编码和解码纸牌序列来表演数学纸牌魔术。魔术的工作原理是使用前4张牌来预测从任何随机选择的5张牌中预测第5张牌，利用阶乘数系统和排列数学。
 
-A Model Context Protocol (MCP) server that implements the Chico and Dico card magic trick algorithm. This server enables AI assistants to perform mathematical card magic by encoding and decoding card sequences based on combinatorial principles. The magic works by using the first 4 cards to predict the 5th card from any randomly selected 5-card hand, leveraging factorial number systems and permutation mathematics.
+## 📦 安装
 
-## 📦 Installation
-
-### Manual Installation
+### 手动安装
 
 ```bash
 pip install card-magic-mcp
 ```
 
-### Installing via Smithery
+### 通过Smithery安装
 
-To install Card Magic MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/card-magic-mcp):
+通过 [Smithery](https://smithery.ai/server/card-magic-mcp) 为 Claude Desktop 安装 Card Magic MCP Server：
 
 ```bash
 npx -y @smithery/cli install card-magic-mcp --client claude
 ```
 
-## 🚀 Usage
+## 🚀 使用方法
 
-### With Claude Desktop
+### Claude Desktop
 
-Add this to your `claude_desktop_config.json`:
+将此添加到您的 `claude_desktop_config.json` 中：
 
 ```json
 {
@@ -48,9 +46,9 @@ Add this to your `claude_desktop_config.json`:
 }
 ```
 
-### With Qwen Agent
+### Qwen Agent
 
-Add this to `function_list` argument:
+将此添加到 `function_list` 参数中：
 
 ```json
 {
@@ -68,15 +66,15 @@ Add this to `function_list` argument:
 }
 ```
 
-## 🔧 Available Tools
+## 🔧 可用工具
 
-The MCP Server provides two main tools for card magic:
+MCP Server 为纸牌魔术提供两个工具：
 
-- **`encode_cards`**: Encode 5 cards to hide the 5th card's information in the first 4
-- **`decode_cards`**: Decode the hidden 5th card from the arrangement of 4 visible cards
+- **`encode_cards`**：编码 5 张牌，将第 5 张牌的信息隐藏在前 4 张牌中
+- **`decode_cards`**：通过前 4 张牌的排列信息，解码隐藏的第 5 张牌
 
-## 🃏 Card Format
+## 🃏 纸牌格式
 
-- **Suits**: ♠ (Spades), ♥ (Hearts), ♦ (Diamonds), ♣ (Clubs)
-- **Ranks**: A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K
-- **Format**: Each card should be written as `{suit}{rank}` with spaces separating multiple cards
+- **花色**：♠（黑桃），♥（红心），♦（方块），♣（梅花）
+- **点数**：A，2，3，4，5，6，7，8，9，10，J，Q，K
+- **格式**：每张牌应写为 `{花色}{点数}`，多张牌之间用空格分隔

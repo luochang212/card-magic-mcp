@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import asyncio
+from functools import lru_cache
 import logging
 import random
 from typing import Tuple
@@ -33,6 +34,7 @@ app = Server("card_magic_mcp")
 logger = create_logger("card_magic_mcp")
 
 
+@lru_cache(maxsize=128)
 def factorial(n):
     """计算n的阶乘"""
     if n == 0 or n == 1:
@@ -45,8 +47,8 @@ class MagicMax:
     """Chico 和 Dico 的魔术 - 推广版"""
 
     def __init__(self, n, k):
-        assert 3 <= n < factorial(k) + k
         assert 3 <= k
+        assert k <= n < factorial(k) + k
         self.n = n  # 整个牌组有多少牌
         self.k = k  # 从牌组中抽几张牌
 
@@ -83,10 +85,9 @@ class MagicMax:
         factorial_k = factorial(self.k)
 
         epoch = sum([self.n - i for i in range(self.k)]) // factorial_k
-        for t in range(epoch+1):
-            v_min = self.k * q + t * factorial_k - sum_visible_cards
-            v_max = self.k * q + t * factorial_k - sum_visible_cards
-            if v_min >= 1 and v_max <= self.n:
+        for t in range(epoch + 1):
+            v_guess = self.k * q + t * factorial_k - sum_visible_cards
+            if 1 <= v_guess <= self.n:
                 break
 
         for r in range(self.k):
@@ -236,7 +237,7 @@ async def list_tools() -> list[Tool]:
                 "该函数接受5张牌，每张牌由【花色】和【数字】组成。",
                 "- 可选的花色: ♠(黑桃) ♥(红心) ♦(方块/方片) ♣(梅花)",
                 "- 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K",
-                "输入示例: ♥K ♣3 ♠7 ♦5 ♠A",
+                '输入示例: {"cards": "♥K ♣3 ♠7 ♦5 ♠A"}',
             ]),
             inputSchema={
                 "type": "object",
@@ -256,7 +257,7 @@ async def list_tools() -> list[Tool]:
                 "该函数接受4张牌，每张牌由【花色】和【数字】组成。",
                 "- 可选的花色: ♠(黑桃) ♥(红心) ♦(方块/方片) ♣(梅花)",
                 "- 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K",
-                "输入示例: ♠A ♥3 ♣10 ♦K",
+                '输入示例: {"cards": "♠A ♥3 ♣10 ♦K"}',
             ]),
             inputSchema={
                 "type": "object",
