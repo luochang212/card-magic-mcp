@@ -6,7 +6,7 @@
 [![CI](https://github.com/luochang212/card-magic-mcp/workflows/CI/badge.svg)](https://github.com/luochang212/card-magic-mcp/actions?query=workflow:CI)
 [![Downloads](https://static.pepy.tech/personalized-badge/card-magic-mcp?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/card-magic-mcp)
 
-[中文文档](docs/README_CN.md)
+[中文文档](https://github.com/luochang212/card-magic-mcp/blob/main/docs/README_CN.md)
 
 A Model Context Protocol (MCP) server that implements the Chico and Dico card magic trick algorithm. This server enables AI assistants to perform mathematical card magic by encoding and decoding card sequences based on combinatorial principles. The magic works by using the first 4 cards to predict the 5th card from any randomly selected 5-card hand, leveraging factorial number systems and permutation mathematics.
 

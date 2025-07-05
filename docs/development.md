@@ -84,48 +84,7 @@ cd chico_dico_magic
 pip install -r requirements.txt
 ```
 
-## 三、使用方法
-
-直接运行代码 [usage.py](../examples/usage.py)
-
-```python
-import chico_dico
-
-
-# 指定五张牌
-nums = [2, 4, 41, 29, 33]
-cg = chico_dico.CardGame(nums)
-
-# 随机五张牌
-# cg.im_feeling_lucky()
-
-# 展示当前牌面
-cards = cg.display_cards(cg.nums)
-print(f'当前牌面：{cards}')
-
-# Chico 给牌排序
-first_four, fifth_card = cg.chico()
-print(f'前四张牌：{cg.display_cards(first_four)}')
-
-# Dico 根据前四张牌猜第五张
-answer = cg.dico(first_four)
-print(f'Dico 认为第五张牌是：{cg.display_cards([answer])}')
-print(f'实际第五张牌是：{cg.display_cards([fifth_card])}')
-```
-
-运行结果：
-
-```bash
-$ python examples/usage.py
-当前牌面：♠2 ♠4 ♣2 ♦3 ♦7
-前四张牌：♠2 ♦3 ♦7 ♠4
-Dico 认为第五张牌是：♣2
-实际第五张牌是：♣2
-```
-
-更多例子：[examples](../examples/)
-
-## 四、贡献方法
+## 三、贡献方法
 
 1）构建 Python 包
 

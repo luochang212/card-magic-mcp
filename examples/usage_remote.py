@@ -2,9 +2,20 @@
 
 """
 Card Magic Agent
+
+ENV:
+  - uv pip install -U "qwen-agent[gui,rag,code_interpreter,mcp]"
+  - uv pip install python-dotenv
 """
 
+import os
+from dotenv import load_dotenv
+
 from qwen_agent.agents import Assistant, ReActChat
+
+
+# 加载 .env 文件中的环境变量
+load_dotenv()
 
 
 class CMAgent:
@@ -13,7 +24,8 @@ class CMAgent:
     def __init__(self, llm_cfg):
         self.llm_cfg = llm_cfg
 
-    def create_tools(self):
+    @staticmethod
+    def create_tools():
         """获取工具列表"""
         return [
             {
@@ -53,7 +65,8 @@ class CMAgent:
             function_list=tools,
         )
 
-    def ask(self, bot, messages: list) -> str:
+    @staticmethod
+    def ask(bot, messages: list) -> str:
         """使用指定的 bot 进行查询"""
         response = bot.run_nonstream(messages)
         message = response[-1].get('content').strip()
@@ -61,31 +74,30 @@ class CMAgent:
 
 
 if __name__ == '__main__':
+    api_url = os.getenv('DEEPSEEK_API_URL')
+    api_key = os.getenv('DEEPSEEK_API_KEY')
+
     # llm 配置
     llm_cfg = {
-        'model': 'Qwen3-0.6B-FP8',
-        'model_server': 'http://localhost:8000/v1',
-        'api_key': 'token-kcgyrk',
-        'generate_cfg': {
-            'top_p': 0.95,
-            'temperature': 0.6,
-        }
+        'model': 'deepseek-reasoner',
+        'model_server': api_url,
+        'api_key': api_key,
     }
 
     # 实例化 CMAgent
-    pga = CMAgent(llm_cfg)
+    cma = CMAgent(llm_cfg)
 
     # 创建 Agent
-    react_agent = pga.create_react_agent()
-    # assistant_agent = pga.create_assistant_agent()
+    magic_agent = cma.create_react_agent()
 
     # 变魔术
-    query = "帮我编码 ♠2 ♠4 ♣2 ♦3 ♦7"
-    messages = [
+    # query = "帮我编码 ♠2 ♠4 ♣2 ♦3 ♦7"
+    query = "帮我编码 方片2 梅花J 黑桃2 红心3 方块K"
+    msg = [
         {
             'role': 'user',
             'content': query
         }
     ]
-    answer = pga.ask(react_agent, messages)
+    answer = cma.ask(magic_agent, msg)
     print(answer)

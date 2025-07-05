@@ -3,6 +3,7 @@
 .vscode
 .pytest_cache
 .nox
+.env
 .ipynb_checkpoints
 __pycache__
 dist
