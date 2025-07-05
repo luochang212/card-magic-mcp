@@ -30,9 +30,11 @@ npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
 
 ## 🚀 Usage
 
-Can be called through [Qwen Agent](https://github.com/QwenLM/Qwen-Agent), supporting two calling methods: `stdio` and `sse`. See [examples/usage_remote.py](examples/usage_remote.py) for usage examples.
+This MCP server can be integrated with [Qwen Agent](https://github.com/QwenLM/Qwen-Agent) using two connection methods: `stdio` and `sse`.
 
-### 1. `stdio` Local Call
+> For more examples, see [examples/usage_remote.py](examples/usage_remote.py)
+
+### `stdio`: Local Call
 
 Add the following configuration to the `function_list` parameter:
 
@@ -52,7 +54,7 @@ Add the following configuration to the `function_list` parameter:
 }
 ```
 
-### 2. `sse` Remote Call
+### `sse`: Remote Call
 
 Before calling, run the following code in the command line to start the MCP service:
 

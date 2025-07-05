@@ -28,9 +28,11 @@ npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
 
 ## 二、使用方法
 
-可通过 [Qwen Agent](https://github.com/QwenLM/Qwen-Agent) 调用，支持两种调用方法：`stdio`, `sse`，使用方法参见 [examples/usage_remote.py](../examples/usage_remote.py)
+支持 [Qwen Agent](https://github.com/QwenLM/Qwen-Agent)，可通过两种方法调用：`stdio`, `sse`
 
-### 1. `stdio` 本地调用
+> 具体使用方法参见：[examples/usage_remote.py](../examples/usage_remote.py)
+
+### `stdio`: 本地调用
 
 将以下配置添加到 `function_list` 参数：
 
@@ -50,7 +52,7 @@ npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
 }
 ```
 
-### 2. `sse` 远程调用
+### `sse`: 远程调用
 
 调用前，需在命令行运行以下代码，启动 MCP 服务：
 
@@ -72,7 +74,7 @@ uvx --from card-magic-mcp card_magic_sse
 
 ## 三、可用工具
 
-MCP Server 为纸牌魔术提供两个工具：
+MCP Server 为卡牌魔术提供两个工具：
 
 - **`encode_cards`**：编码 5 张牌，将第 5 张牌的信息隐藏在前 4 张牌的排序信息中
 - **`decode_cards`**：通过前 4 张牌的排列信息解码出隐藏的第 5 张牌
