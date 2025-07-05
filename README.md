@@ -20,33 +20,13 @@ pip install card-magic-mcp
 
 ### Installing via Smithery
 
-To install Card Magic MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/card-magic-mcp):
+To install Card Magic MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@luochang212/card-magic-mcp):
 
 ```bash
-npx -y @smithery/cli install card-magic-mcp --client claude
+npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
 ```
 
 ## 🚀 Usage
-
-### With Claude Desktop
-
-Add this to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "card_magic": {
-      "command": "uv",
-      "args": [
-        "--directory",
-        "path/to/card_magic_mcp",
-        "run",
-        "card_magic_mcp"
-      ]
-    }
-  }
-}
-```
 
 ### With Qwen Agent
 
@@ -61,6 +41,26 @@ Add this to `function_list` argument:
       "args": [
         "--from",
         "card-magic-mcp",
+        "card_magic_mcp"
+      ]
+    }
+  }
+}
+```
+
+### With Claude Desktop
+
+Add this to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "card_magic": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "path/to/card_magic_mcp",
+        "run",
         "card_magic_mcp"
       ]
     }
