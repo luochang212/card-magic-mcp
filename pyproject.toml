@@ -19,6 +19,8 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
   "mcp>=1.0.0",
+  "starlette>=0.27.0",
+  "uvicorn>=0.24.0",
 ]
 classifiers = [
   "License :: OSI Approved :: Apache Software License",
@@ -34,7 +36,8 @@ classifiers = [
 ]
 
 [project.scripts]
-card_magic_mcp = "card_magic_mcp:main"
+card_magic_stdio = "card_magic_mcp:stdio"
+card_magic_sse = "card_magic_mcp:sse"
 
 [project.urls]
 repository = "https://github.com/luochang212/card-magic-mcp"

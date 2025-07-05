@@ -7,7 +7,12 @@ import random
 from typing import Tuple
 
 from mcp.server import Server
+from mcp.server.sse import SseServerTransport
 from mcp.types import TextContent, Tool
+from starlette.applications import Starlette
+from starlette.requests import Request
+from starlette.routing import Mount, Route
+import uvicorn
 
 
 def create_logger(name):
@@ -308,10 +313,51 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
     return [TextContent(type="text", text=res)]
 
 
-async def main():
-    """Main entry point to run the MCP server."""
-    from mcp.server.stdio import stdio_server
+def create_starlette_app(mcp_server: Server, *, debug: bool = False) -> Starlette:
+    """创建 Starlette 应用程序"""
+    sse = SseServerTransport("/messages/")
 
+    async def handle_sse(request: Request) -> None:
+        async with sse.connect_sse(
+                request.scope,
+                request.receive,
+                request._send,
+        ) as (read_stream, write_stream):
+            await mcp_server.run(
+                read_stream,
+                write_stream,
+                mcp_server.create_initialization_options(),
+            )
+
+    return Starlette(
+        debug=debug,
+        routes=[
+            Route("/sse", endpoint=handle_sse),
+            Mount("/messages/", app=sse.handle_post_message),
+        ],
+    )
+
+
+async def sse(host="0.0.0.0", port=8385):
+    """SSE 入口"""
+    logger.info(f"Running in SSE mode on http://{host}:{port}")
+
+    starlette_app = create_starlette_app(app, debug=True)
+
+    config = uvicorn.Config(
+        app=starlette_app,
+        host=host,
+        port=port,
+        log_level="info",
+        loop="asyncio"
+    )
+    server = uvicorn.Server(config)
+    await server.serve()
+
+
+async def stdio():
+    """Stdio 入口"""
+    from mcp.server.stdio import stdio_server
     async with stdio_server() as (read_stream, write_stream):
         try:
             await app.run(
@@ -325,4 +371,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(sse())
+    # asyncio.run(stdio())

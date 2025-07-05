@@ -25,7 +25,7 @@ class CMAgent:
                         "args": [
                             "--from",
                             "card-magic-mcp",
-                            "card_magic_mcp"
+                            "card_magic_stdio"
                         ],
                     }
                 }

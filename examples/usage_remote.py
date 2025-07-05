@@ -28,16 +28,23 @@ class CMAgent:
     def create_tools():
         """获取工具列表"""
         return [
+            # {
+            #     "mcpServers": {
+            #         "card_magic_stdio": {
+            #             "type": "stdio",
+            #             "command": "uvx",
+            #             "args": [
+            #                 "--from",
+            #                 "card-magic-mcp",
+            #                 "card_magic_stdio"
+            #             ],
+            #         }
+            #     }
+            # },
             {
                 "mcpServers": {
-                    "card_magic": {
-                        "type": "stdio",
-                        "command": "uvx",
-                        "args": [
-                            "--from",
-                            "card-magic-mcp",
-                            "card_magic_mcp"
-                        ],
+                    "card_magic_sse": {
+                        "url": "http://0.0.0.0:8385/sse"
                     }
                 }
             },

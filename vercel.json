@@ -1,0 +1,3 @@
+{
+  "buildCommand": "uvx --from card-magic-mcp card_magic_sse"
+}

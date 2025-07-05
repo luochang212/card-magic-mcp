@@ -3,10 +3,15 @@ import asyncio
 from . import magic
 
 
-def main():
-    """Main entry point for the package."""
-    asyncio.run(magic.main())
+def stdio():
+    """Stdio entry point for the package."""
+    asyncio.run(magic.stdio())
+
+
+def sse():
+    """SSE entry point for the package."""
+    asyncio.run(magic.sse())
 
 
 # Expose important items at package level
-__all__ = ['main', 'magic']
+__all__ = ['stdio', 'sse', 'magic']
