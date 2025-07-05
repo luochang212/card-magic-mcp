@@ -2,15 +2,28 @@
 
 [![License](https://img.shields.io/github/license/luochang212/card-magic-mcp)](https://github.com/luochang212/card-magic-mcp)
 [![PyPI](https://img.shields.io/pypi/v/card-magic-mcp.svg?logo=python)](https://pypi.python.org/pypi/card-magic-mcp)
-[![GitHub](https://img.shields.io/github/v/release/luochang212/card-magic-mcp?logo=github&sort=semver)](https://github.com/luochang212/card-magic-mcp)
-[![CI](https://github.com/luochang212/card-magic-mcp/workflows/CI/badge.svg)](https://github.com/luochang212/card-magic-mcp/actions?query=workflow:CI)
 [![Downloads](https://static.pepy.tech/personalized-badge/card-magic-mcp?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/card-magic-mcp)
+[![CI](https://github.com/luochang212/card-magic-mcp/workflows/CI/badge.svg)](https://github.com/luochang212/card-magic-mcp/actions?query=workflow:CI)
+[![smithery badge](https://smithery.ai/badge/@luochang212/card-magic-mcp)](https://smithery.ai/server/@luochang212/card-magic-mcp)
 
 [中文文档](https://github.com/luochang212/card-magic-mcp/blob/main/docs/README_CN.md)
 
 A Model Context Protocol (MCP) server that implements the Chico & Dico card magic trick.
 
 > **Chico & Dico's Card Magic**: Randomly draw five playing cards, and the audience only needs to recite the first four cards in the order arranged by Chico, and Dico can know what the fifth card is.
+
+You can experience this magic trick in the [**Smithery Playground**](https://smithery.ai/playground?prompt=connect%20to%20%40luochang212%2Fcard-magic-mcp).
+
+![smithery_playground](/img/smithery_playground.png)
+
+## 🎭 Performance Steps
+
+1. Tell the magician: `Help me arrange these playing cards ♠J ♠4 ♣2 ♦3 ♦K`
+2. This magician will separate the cards into two piles: the first four cards and the fifth card
+3. Tell the other magician what the first four cards are, and they can tell you what the fifth card is: `The first four playing cards are [card1 card2 card3 card4], what is the fifth card?`
+
+> [!NOTE]
+> Trust me, it's not through memory that it knows what the fifth card is, but through pure magic. To prevent the current dialog from remembering the fifth card, you can open a new Playground page. Tell it what the first four cards are and see if it can still guess correctly.
 
 ## 📦 Installation
 

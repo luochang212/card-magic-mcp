@@ -55,7 +55,7 @@ class CMAgent:
         tools = self.create_tools()
         return ReActChat(
             llm=self.llm_cfg,
-            name='卡牌魔术助手',
+            name='纸牌魔术助手',
             description='使用 ReActChat 模式',
             system_message='',
             function_list=tools,
@@ -66,7 +66,7 @@ class CMAgent:
         tools = self.create_tools()
         return Assistant(
             llm=self.llm_cfg,
-            name='卡牌魔术助手',
+            name='纸牌魔术助手',
             description='使用 Assistant 模式',
             system_message='',
             function_list=tools,
