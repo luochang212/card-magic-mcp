@@ -57,7 +57,7 @@ npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
 调用前，需在命令行运行以下代码，启动 MCP 服务：
 
 ```bash
-uvx --from card-magic-mcp card_magic_sse
+HOST=0.0.0.0 PORT=8385 uvx --from card-magic-mcp card_magic_sse
 ```
 
 在 `function_list` 中添加以下配置：

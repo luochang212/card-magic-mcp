@@ -59,7 +59,7 @@ Add the following configuration to the `function_list` parameter:
 Before calling, run the following code in the command line to start the MCP service:
 
 ```bash
-uvx --from card-magic-mcp card_magic_sse
+HOST=0.0.0.0 PORT=8385 uvx --from card-magic-mcp card_magic_sse
 ```
 
 Add the following configuration to `function_list`:

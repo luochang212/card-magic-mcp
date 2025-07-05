@@ -1,12 +1,12 @@
 import asyncio
 
-from . import sse, stdio
+from . import server
 
 
 def main():
     """Stdio entry point for the package."""
-    asyncio.run(stdio.stdio())
+    asyncio.run(server.mcp.run())
 
 
 # Expose important items at package level
-__all__ = ['main', 'sse', 'stdio']
+__all__ = ['main', 'server']

@@ -1,26 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from functools import lru_cache
-import logging
 import random
 from typing import Tuple
-
-
-def create_logger(name):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-
-    # create console handler and set level to debug
-    stream_handler = logging.StreamHandler()
-    stream_handler.setLevel(logging.DEBUG)
-
-    # create formatter
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    stream_handler.setFormatter(formatter)
-
-    logger.addHandler(stream_handler)
-
-    return logger
 
 
 @lru_cache(maxsize=128)
@@ -209,3 +191,61 @@ class CardGame:
         fifth_card_str = self.cm.num_to_card(fifth_card)
 
         return f"第五张扑克牌是 {fifth_card_str}"
+
+
+cg = CardGame()
+
+
+def encode_cards(cards_str: str) -> str:
+    """本函数实现魔术师 Chico 的操作：将五张牌重新排序，
+    并在排序过程中将第五张牌的信息编码在前四张的排序信息中
+
+    :param cards_str: 该参数接受 5 张牌，形如 ♥K ♣3 ♠7 ♦5 ♠A
+                      每张牌由【花色】和【数字】组成：
+                        - 可选的花色:
+                          - ♠ (黑桃, Spades)
+                          - ♥ (红心, Hearts)
+                          - ♦ (方块/方片, Diamonds)
+                          - ♣ (梅花, Clubs)
+                        - 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K
+                      注意：请将花色和数字标准化后再作为参数传入
+    :return: 本函数返回前四张牌和第五张牌的值
+    """
+
+    # 解析卡面信息
+    cards = [card.strip() for card in cards_str.strip().split() if card.strip()]
+
+    # 检查卡面信息
+    check_info = cg.check_card(cards, card_num=5)
+
+    if check_info != "pass":
+        raise ValueError(check_info)
+
+    return cg.chico(cards)
+
+
+def decode_cards(cards_str: str) -> str:
+    """本函数实现魔术师 Dico 的操作：根据前四张牌猜第五张牌
+
+    :param cards_str: 该参数接受 4 张牌，形如 ♠A ♥3 ♣10 ♦K
+                      每张牌由【花色】和【数字】组成：
+                        - 可选的花色:
+                          - ♠ (黑桃, Spades)
+                          - ♥ (红心, Hearts)
+                          - ♦ (方块/方片, Diamonds)
+                          - ♣ (梅花, Clubs)
+                        - 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K
+                      注意：请将花色和数字标准化后再作为参数传入
+    :return: 本函数返回第五张牌的值
+    """
+
+    # 解析卡面信息
+    cards = [card.strip() for card in cards_str.strip().split() if card.strip()]
+
+    # 检查卡面信息
+    check_info = cg.check_card(cards, card_num=4)
+
+    if check_info != "pass":
+        raise ValueError(check_info)
+
+    return cg.dico(cards)

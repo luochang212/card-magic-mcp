@@ -4,7 +4,7 @@
 
 ```bash
 pip install uv
-uv pip install -U chico_dico
+uv pip install -U card_magic_mcp
 ```
 
 ## 二、开发者安装
@@ -31,20 +31,20 @@ conda env remove --name magic_env
 2）使用源代码（或 `local wheel`）安装 Python 包
 
 ```bash
-# 检查 chico_dico 是否已经安装
-pip list | grep chico_dico
+# 检查 card_magic_mcp 是否已经安装
+pip list | grep card_magic_mcp
 
 # 从源代码安装
 pip install -e .
 
 # 从 local wheel 安装
-# `pip install dist/chico_dico-[VERSION]-py3-none-any.whl`
+# `pip install dist/card_magic_mcp-[VERSION]-py3-none-any.whl`
 
 # 卸载
-pip uninstall chico_dico
+pip uninstall card_magic_mcp
 
 # 卸载并重新安装
-pip uninstall chico_dico -y && pip install -e .
+pip uninstall card_magic_mcp -y && pip install -e .
 ```
 
 3）功能测试
@@ -78,7 +78,7 @@ flake8 --import-order-style google
 
 ```bash
 # 首先来到项目根目录（如已在请忽略）
-cd chico_dico_magic
+cd card_magic_mcp_magic
 
 # 安装所有必要的依赖
 pip install -r requirements.txt

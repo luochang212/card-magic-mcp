@@ -1,6 +1,4 @@
-mcp>=1.0.0
-starlette>=0.27.0
-uvicorn>=0.24.0
+fastmcp>=2.10.2
 pytest>=8.4.1
 nox>=2025.5.1
 flake8>=7.2.0
