@@ -37,7 +37,7 @@ classifiers = [
 
 [project.scripts]
 card_magic_stdio = "card_magic_mcp:main"
-card_magic_sse = "card_magic_mcp:sse"
+card_magic_sse = "card_magic_mcp.__main__:sse"
 
 [project.urls]
 repository = "https://github.com/luochang212/card-magic-mcp"
