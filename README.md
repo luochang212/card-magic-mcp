@@ -5,6 +5,7 @@
 [![GitHub](https://img.shields.io/github/v/release/luochang212/card-magic-mcp?logo=github&sort=semver)](https://github.com/luochang212/card-magic-mcp)
 [![CI](https://github.com/luochang212/card-magic-mcp/workflows/CI/badge.svg)](https://github.com/luochang212/card-magic-mcp/actions?query=workflow:CI)
 [![Downloads](https://static.pepy.tech/personalized-badge/card-magic-mcp?period=total&units=international_system&left_color=grey&right_color=green&left_text=Downloads)](https://pepy.tech/project/card-magic-mcp)
+[![smithery badge](https://smithery.ai/badge/card-magic-mcp)](https://smithery.ai/server/card-magic-mcp)
 
 [中文文档](https://github.com/luochang212/card-magic-mcp/blob/main/docs/README_CN.md)
 
@@ -12,18 +13,18 @@ A Model Context Protocol (MCP) server that implements the Chico and Dico card ma
 
 ## 📦 Installation
 
-### Manual Installation
-
-```bash
-pip install card-magic-mcp
-```
-
 ### Installing via Smithery
 
 To install Card Magic MCP Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@luochang212/card-magic-mcp):
 
 ```bash
 npx -y @smithery/cli@latest install @luochang212/card-magic-mcp --client claude
+```
+
+### Manual Installation
+
+```bash
+pip install card-magic-mcp
 ```
 
 ## 🚀 Usage
