@@ -56,15 +56,17 @@ class MagicMax:
         factorial_k = factorial(self.k)
 
         epoch = sum([self.n - i for i in range(self.k)]) // factorial_k
+        tt = None
         for t in range(epoch + 1):
             v_guess = self.k * q + t * factorial_k - sum_visible_cards
             if 1 <= v_guess <= self.n:
+                tt = t
                 break
 
         for r in range(self.k):
             # 线索1：牌组总和为 s + k! * t
             s = self.k * q + r
-            v = s + factorial_k * t - sum_visible_cards
+            v = s + factorial_k * tt - sum_visible_cards
             # 线索2：第 k 张牌的值 v 放入牌组中获得正确的余数 r
             if 1 <= v <= self.n and v not in visible_cards:
                 real_r = sorted(visible_cards + [v]).index(v)
@@ -197,20 +199,6 @@ cg = CardGame()
 
 
 def encode_cards(cards_str: str) -> str:
-    """本函数实现魔术师 Chico 的操作：将五张牌重新排序，
-    并在排序过程中将第五张牌的信息编码在前四张的排序信息中
-
-    :param cards_str: 该参数接受 5 张牌，形如 ♥K ♣3 ♠7 ♦5 ♠A
-                      每张牌由【花色】和【数字】组成：
-                        - 可选的花色:
-                          - ♠ (黑桃, Spades)
-                          - ♥ (红心, Hearts)
-                          - ♦ (方块/方片, Diamonds)
-                          - ♣ (梅花, Clubs)
-                        - 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K
-                      注意：请将花色和数字标准化后再作为参数传入
-    :return: 本函数返回前四张牌和第五张牌的值
-    """
 
     # 解析卡面信息
     cards = [card.strip() for card in cards_str.strip().split() if card.strip()]
@@ -225,19 +213,6 @@ def encode_cards(cards_str: str) -> str:
 
 
 def decode_cards(cards_str: str) -> str:
-    """本函数实现魔术师 Dico 的操作：根据前四张牌猜第五张牌
-
-    :param cards_str: 该参数接受 4 张牌，形如 ♠A ♥3 ♣10 ♦K
-                      每张牌由【花色】和【数字】组成：
-                        - 可选的花色:
-                          - ♠ (黑桃, Spades)
-                          - ♥ (红心, Hearts)
-                          - ♦ (方块/方片, Diamonds)
-                          - ♣ (梅花, Clubs)
-                        - 可选的数字: A 2 3 4 5 6 7 8 9 10 J Q K
-                      注意：请将花色和数字标准化后再作为参数传入
-    :return: 本函数返回第五张牌的值
-    """
 
     # 解析卡面信息
     cards = [card.strip() for card in cards_str.strip().split() if card.strip()]
