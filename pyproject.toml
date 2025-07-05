@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "card_magic_mcp"
-version = "1.0.2"
+version = "1.0.3"
 description = "A Model Context Protocol (MCP) server that implements the famous Chico and Dico card magic trick algorithm. This server enables AI assistants to perform mathematical card magic by encoding and decoding card sequences based on combinatorial principles. The magic works by using the first 4 cards to predict the 5th card from any randomly selected 5-card hand, leveraging factorial number systems and permutation mathematics."
 readme = "README.md"
 keywords = [

@@ -9,8 +9,8 @@ ENV:
 """
 
 import os
-from dotenv import load_dotenv
 
+from dotenv import load_dotenv
 from qwen_agent.agents import Assistant, ReActChat
 
 
